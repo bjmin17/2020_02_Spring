@@ -32,8 +32,8 @@
 	</nav>
 	<section>
 		<c:choose>
-			<c:when test="${BODY == 'PRODUCT'}">
-				<%@ include file="/WEB-INF/views/admin/product.jsp" %>
+			<c:when test="${BODY == 'DEPT'}">
+				<%@ include file="/WEB-INF/views/dept/dept.jsp" %>
 			</c:when>
 		</c:choose>
 	</section>

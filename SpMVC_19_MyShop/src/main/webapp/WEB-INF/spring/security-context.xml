@@ -86,6 +86,7 @@ csrf 인증하지 않는것을 취소하겠다 = 인증하겠다.
 	<security:csrf disabled="false"/>
 	<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
 	<security:intercept-url pattern="/auth/**" access="permitAll()"/>
+	<security:intercept-url pattern="/user/**" access="permitAll()"/>
 	<security:intercept-url pattern="/**" access="permitAll"/>
 	
 	

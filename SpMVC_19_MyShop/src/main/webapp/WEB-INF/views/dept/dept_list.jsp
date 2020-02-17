@@ -29,12 +29,12 @@ $(function(){
 </script>
 <table class="col-md-4 col-12">
 	<tr>
-		<th>상품코드</th>
-		<th>상품이름</th>
-		<th>거래처</th>
-		<th>품목</th>
-		<th>매입가격</th>
-		<th>판매가격</th>
+		<th>거래처코드</th>
+		<th>거래처명</th>
+		<th>대표자명</th>
+		<th>대표번호</th>
+		<th>사업자번호</th>
+		<th>주소</th>
 	</tr>
 	<c:choose>
 		<c:when test="${empty PRO_LIST}">
