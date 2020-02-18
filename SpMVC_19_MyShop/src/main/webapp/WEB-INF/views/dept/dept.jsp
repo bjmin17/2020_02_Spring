@@ -37,7 +37,7 @@ tr,td,th {
 <section class="container-fluid row mt-5">
 	<article class="col-md-7 col-12 bg-light pro-input">
 	
-		<form:form action="${rootPath}/admin/dept/input" modelAttribute="DeptVO">
+		<form:form action="${rootPath}/admin/dept/input" modelAttribute="deptVO">
 			
 			<div class="container-fluid form-group row">
 				<form:input path="d_code" class="form-control col-6" placeholder="거래처코드"/>
@@ -83,7 +83,7 @@ tr,td,th {
 
 	</article>
 	
-	<article class="col-md-4 col-12 bg-light pro-list">
+	<article class="col-md-4 col-12 bg-light list-body">
 		<%@ include file="/WEB-INF/views/dept/dept_list.jsp" %>
 	</article>
 </section>
