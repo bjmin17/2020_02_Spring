@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminController {
 
 	@RequestMapping(value= {"","/"},method = RequestMethod.GET)
-	public String main() {
+	public String main(Model model) {
+		model.addAttribute("BODY","USER");
 		return "admin/main";
 	}
 	

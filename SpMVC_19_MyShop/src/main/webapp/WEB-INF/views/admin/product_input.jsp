@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-    
+
+
 <script>
 $(function(){
 	
@@ -27,7 +28,7 @@ $(function(){
 		if(e.keyCode == KEY_F9) { // F9를 누르면
 			alert("거래처정보 리스트 보이기")
 			let search = $(this).val()
-			let dept_url = "${rootPath}/admin/dept/list"
+			let dept_url = "${rootPath}/admin/dept/search/" + search
 			// alert(search)
 			
 			let win_style = "toolbar=no,"
@@ -43,6 +44,8 @@ $(function(){
 		
 		
 	})
+	
+	
 	
 })
 </script>
