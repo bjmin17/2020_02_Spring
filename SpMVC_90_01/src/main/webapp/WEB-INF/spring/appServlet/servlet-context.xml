@@ -14,8 +14,6 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/js/**" location="/js/" />
-	<resources mapping="/images/**" location="/images/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,8 +21,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.biz.shop.controller" />
-	<context:component-scan base-package="com.biz.shop.service" />
+	<!-- 
+	base-package를 controller, service로 등록하는 것은
+	서버가 시작될 때, 모든 클래스를 스캔하는 것을 방지하여
+	실행시간을 절약하기 위함이고
+	Dao, Repository와 같은 특별한 클래스나 인터페이스가 스캔되어
+	일으키는 문제를 방지하기 위함이다. -->
+	<context:component-scan base-package="com.biz.app.controller" />
+	<context:component-scan base-package="com.biz.app.service" />
 	
 	
 	

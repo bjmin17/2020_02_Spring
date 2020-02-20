@@ -28,7 +28,7 @@ public class B2C_Controller {
 		productVO = new ProductVO();
 		 List<ProductVO>proList = proService.selectAll();
 		model.addAttribute("PRO_LIST",proList);
-		model.addAttribute("BODY","USER");
+		model.addAttribute("BODY","B2C");
 		model.addAttribute("productVO",productVO);
 		
 		return "admin/main";
@@ -38,7 +38,7 @@ public class B2C_Controller {
 	public String detail(@ModelAttribute("productVO") ProductVO productVO,
 					@PathVariable("id") String strId, Model model) {
 		
-		model.addAttribute("BODY","USER_DETAIL");
+		model.addAttribute("BODY","B2C_DETAIL");
 		
 		long id = Long.valueOf(strId);
 		productVO = proService.findById(id);

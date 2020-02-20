@@ -12,15 +12,48 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-<div style="display:flex; justify-content: center;">
-	<div class="card" style="text-align:center; width:400px; height: 600px;">
-	  <div class="card-header" style="font-size: 40px; font-weight: bold;">${productVO.p_name}</div>
-	  <div class="card-body pt-5 pb-5">그 림</div>
-	  <div class="card-footer" style="font-size: 40px; font-weight: bold;">판매 가격 : ${productVO.p_oprice}원</div>
+<style>
+	div.product_detail {
+		display: flex;
+		justify-content: center;
+	}
+	
+	div.product_detail div.card{
+		text-align: center;
+		width: 400px;
+		height: 600px;
+		
+	}
+	div.product_detail div.card-header, div.product_detail div.card-footer{
+		font-size: 40px;
+		font-weight: bold;
+	}
+	
+	div.product_detail div.user_button {
+		text-align: right;
+	}
+	
+	div.product_detail div.user_button button.item-cart{
+		border: 1px solid black;
+	}
+	
+	div.product_detail div.user_button button.item-purchase{
+		border: 1px solid transparent;
+		background-color: #007bff;
+		color:white;
+	}
+	
+	
+	
+</style>
+<div class="product_detail">
+	<div class="card">
+	  <div class="card-header">${productVO.p_name}</div>
+	  <div class="card-body pt-5 pb-5">${productVO.p_detail}</div>
+	  <div class="card-footer">판매 가격 : ${productVO.p_oprice}원</div>
 		<div class="user_button" style="text-align: right;">
-			<button style="border: 1px solid black;">장바구니</button>
-			<button style="border: 1px solid transparent; background-color: red; color:white;">구매하기</button>
+			<button class="item-cart">장바구니</button>
+			<button class="item-purchase">구매하기</button>
 		</div>
 	</div>
 </div>

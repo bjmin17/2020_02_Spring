@@ -44,7 +44,7 @@ $(function(){
 				<c:forEach var="PRO" items="${PRO_LIST}" varStatus="i">
 				<tr class="user_tr"
 						data-id="${PRO.id}">
-					<td><span  class="p_name">${PRO.p_name}</span></td>
+					<td><span  class="p_name">${PRO.p_name}</span><span class="badge badge-danger">hot</span></td>
 					<td style="font-size: 20px; font-weight: bold;">${PRO.p_oprice}원</td>
 				</tr>		
 				</c:forEach>	

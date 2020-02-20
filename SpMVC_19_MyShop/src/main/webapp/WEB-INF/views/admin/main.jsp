@@ -36,9 +36,32 @@ tr,td,th {
 	white-space: nowrap;
 }
 
+header.jumbotron {
+	margin-bottom: 0px;
+}
+
+header.jumbotron h2{
+	font-weight: bold;
+}
+
+
+div.main-body-out{
+	background-color: #f4f4f4;
+}
+
+section.main-body{
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+}
+
 </style>
 </head>
 <body>
+	<header class="jumbotron">
+		<h2>마트 관리자 페이지</h2>
+	
+	</header>
 	<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 		<ul class="navbar-nav">
 			<li class="navbar-item">
@@ -60,22 +83,24 @@ tr,td,th {
 			</li>
 		</ul>
 	</nav>
-	<section>
-		<c:choose>
-			<c:when test="${BODY == 'PRODUCT'}">
-				<%@ include file="/WEB-INF/views/admin/product.jsp" %>
-			</c:when>
-			<c:when test="${BODY == 'DEPT'}">
-				<%@ include file="/WEB-INF/views/dept/dept.jsp" %>
-			</c:when>
-			<c:when test="${BODY == 'USER'}">
-				<%@ include file="/WEB-INF/views/users/user_product_list.jsp" %>
-			</c:when>
-			<c:when test="${BODY == 'USER_DETAIL'}">
-				<%@ include file="/WEB-INF/views/users/user_product_detail.jsp" %>
-			</c:when>
-			
-		</c:choose>
-	</section>
+	<div class="main-body-out">
+		<section class="main-body">
+			<c:choose>
+				<c:when test="${BODY == 'PRODUCT'}">
+					<%@ include file="/WEB-INF/views/admin/product.jsp" %>
+				</c:when>
+				<c:when test="${BODY == 'DEPT'}">
+					<%@ include file="/WEB-INF/views/dept/dept.jsp" %>
+				</c:when>
+				<c:when test="${BODY == 'B2C'}">
+					<%@ include file="/WEB-INF/views/users/user_product_list.jsp" %>
+				</c:when>
+				<c:when test="${BODY == 'B2C_DETAIL'}">
+					<%@ include file="/WEB-INF/views/users/user_product_detail.jsp" %>
+				</c:when>
+				
+			</c:choose>
+		</section>
+	</div>
 </body>
 </html>
