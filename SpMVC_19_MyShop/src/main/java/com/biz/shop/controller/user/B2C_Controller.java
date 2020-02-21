@@ -27,11 +27,12 @@ public class B2C_Controller {
 		
 		productVO = new ProductVO();
 		 List<ProductVO>proList = proService.selectAll();
-		model.addAttribute("PRO_LIST",proList);
+		model.addAttribute("B2C_LIST",proList);
 		model.addAttribute("BODY","B2C");
 		model.addAttribute("productVO",productVO);
 		
 		return "admin/main";
+//		return "users/user_product_list";
 	}
 	
 	@RequestMapping(value="/detail/{id}",method=RequestMethod.GET)
@@ -42,7 +43,7 @@ public class B2C_Controller {
 		
 		long id = Long.valueOf(strId);
 		productVO = proService.findById(id);
-		model.addAttribute("productVO", productVO);
+		model.addAttribute("pVO", productVO);
 		
 		return "admin/main";
 	}
