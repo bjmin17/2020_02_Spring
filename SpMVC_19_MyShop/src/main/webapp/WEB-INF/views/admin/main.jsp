@@ -59,7 +59,7 @@ section.main-body{
 </head>
 <body>
 	<header class="jumbotron">
-		<h2>마트 관리자 페이지</h2>
+		<h2>MY SHOP 관리자 페이지</h2>
 	
 	</header>
 	<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
@@ -98,6 +98,10 @@ section.main-body{
 				<c:when test="${BODY == 'B2C_DETAIL'}">
 					<%@ include file="/WEB-INF/views/users/user_product_detail.jsp" %>
 				</c:when>
+				<c:otherwise>
+					<h3>장바구니 상품 : ${COUNT_CART}</h3>
+					<h3>배송중 상품 : ${COUNT_DELIV}</h3>
+				</c:otherwise>
 				
 			</c:choose>
 		</section>

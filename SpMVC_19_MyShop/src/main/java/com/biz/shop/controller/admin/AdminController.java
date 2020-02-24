@@ -5,13 +5,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.biz.shop.service.CartService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController {
 
+	private final CartService cartService;
+	
+	
 	@RequestMapping(value= {"","/"},method = RequestMethod.GET)
 	public String main(Model model) {
+		
+		int countCart = cartService.countCart();
+		int countDeliv = cartService.countDeliv();
+		
 		model.addAttribute("BODY","USER");
+		model.addAttribute("COUNT_CART",countCart);
+		model.addAttribute("COUNT_DELIV",countDeliv);
+		
 		return "admin/main";
 	}
 	
@@ -21,4 +36,7 @@ public class AdminController {
 		model.addAttribute("BODY", "PRODUCT");
 		return "admin/main";
 	}
+	
+	
+	
 }
