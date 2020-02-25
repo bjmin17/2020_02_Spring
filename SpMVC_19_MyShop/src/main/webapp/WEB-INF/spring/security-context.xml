@@ -104,7 +104,7 @@ csrf 인증하지 않는것을 취소하겠다 = 인증하겠다.
 					login-processing-url="/login"	
 					authentication-failure-url="/auth/login?error"
 					
-					default-target-url="/auth/login_ok"
+					default-target-url="/"
 					username-parameter="username"
 					password-parameter="password"
 					/>

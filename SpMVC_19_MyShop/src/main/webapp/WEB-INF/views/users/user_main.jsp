@@ -42,7 +42,7 @@ $(function(){
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">MY SHOP</a>
+			<a class="navbar-brand" href="${rootPath}/">MY SHOP</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@ $(function(){
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
+					<li class="nav-item active"><a class="nav-link" href="${rootPath}/user/product/list">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
 					<sec:authorize access="isAnonymous()">
