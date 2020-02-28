@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.biz.bbs.domain.BBsVO;
+import com.biz.bbs.domain.CommentVO;
 import com.biz.bbs.service.BBsService;
+import com.biz.bbs.service.CommentService;
+import com.biz.bbs.service.CommentServiceImpl;
 import com.biz.bbs.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +45,9 @@ public class BBsController {
 	 */
 	@Autowired
 	private BBsService bbsService;
+	@Autowired
+	private CommentService cService;
+	
 	
 	@Autowired
 	private FileService fileService;
@@ -55,7 +61,6 @@ public class BBsController {
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String list(Model model) {
 		List<BBsVO> bbsList = bbsService.selectAll();
-		
 		model.addAttribute("BBS_LIST", bbsList);
 		return "bbs_list";
 	}
@@ -131,8 +136,8 @@ public class BBsController {
 //			bbsService.insert(bbsVO);
 //		}
 		bbsService.update(bbsVO);
-		
-		return "redirect:/list";
+		model.addAttribute("b_id",bbsVO.getB_id());
+		return "redirect:/detail";
 	}
 	
 	@RequestMapping(value="/delete/{b_id}",method=RequestMethod.GET)
@@ -144,9 +149,12 @@ public class BBsController {
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
 	public String detail(@RequestParam("b_id") String b_id, Model model) {
 		
-		BBsVO bbsVO = bbsService.findById(Long.valueOf(b_id));
+		long c_b_id = Long.valueOf(b_id);
+		this.commentList(c_b_id+"",model);
 		
+		BBsVO bbsVO = bbsService.findById(Long.valueOf(b_id));
 		model.addAttribute("BBS", bbsVO);
+		
 		
 		return "bbs_view";
 	}
@@ -163,6 +171,17 @@ public class BBsController {
 			return "FAIL";
 		}
 		return retFileName;	
+	}
+	
+	/*
+	 * 게시판의 id값을 매개변수로 받아서
+	 * 코멘트 리스트를 보여주는 메서드
+	 */
+	private List<CommentVO> commentList(String b_id, Model model) {
+		List<CommentVO> commentList = cService.findByBId(Long.valueOf(b_id));
+		log.debug("댓글"+commentList.toString());
+		model.addAttribute("COMMENT",commentList);
+		return commentList;
 	}
 	
 }
