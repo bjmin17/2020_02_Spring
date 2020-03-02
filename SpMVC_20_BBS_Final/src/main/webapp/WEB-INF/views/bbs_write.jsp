@@ -109,7 +109,6 @@
 				</div>
 				<div class="form-group d-flex justify-content-end">
 					<button class="btn btn-primary mr-2">저장</button>
-					<button type="button" class="btn btn-danger mr-2 btn_delete" data-id="${BBS.b_id}">삭제</button>
 					<a href="${rootPath}/"><button type="button" class="btn btn-success">목록으로</button></a>
 				</div>
 			</form>
