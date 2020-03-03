@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.biz.bbs.domain.CommentVO;
 import com.biz.bbs.repository.CommentDao;
 
-@Service
+@Service("cmtV1")
 public class CommentServiceImpl implements CommentService{
 
 	protected final CommentDao cmtDao;

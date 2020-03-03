@@ -9,6 +9,11 @@ import com.biz.bbs.domain.CommentVO;
 
 public interface CommentDao {
 
+	/*
+	 * 오라클의 쿼리를 이용하여 계층형 코멘트 데이터 추출
+	 */
+	public List<CommentVO> findByBIdLevel(Long c_b_id);
+	
 	@Select("SELECT * FROM tbl_comment")
 	public List<CommentVO> selectAll();
 	
