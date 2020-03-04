@@ -1,0 +1,31 @@
+2020.03.04. NoSQL,mongoDB를 이용한 회원정보 CRUD(mongoose 사용)
+--------------
+
+----------
+
+이클립스 NodeJS 연결
+1. 이클립스 실행
+2. 마켓 플레이스에서 Nodeclipse 검색 후 인스톨
+3. 윈도우 프리퍼런스에서 nodeclipse에서 Express path를
+	cmd 창에서 npm i -g express-generator 검색 후 -> 이후의 주소를 복사해서 붙이기
+
+
+디펜던시 설치는
+프로젝트 우클릭 후 startexplorer -> start shell here 후
+	cmd창에서 npm install 하면 디펜던시 설치 완료
+
+
+이클립스 에디터(html태그들) 모양 바꾸는 방법(자동완성 되게끔)
+general - editors - file associations에서 위의 add 누르고
+*.ejs 입력
+그리고 아래 add 누르고 html editor 선택
+
+이후 index.ejs 닫고 다시 열기
+content types(preferences->general->content type) 는 중간에 text 열고 html, 아래 add 눌러서 *.ejs 입력
+
+------------
+VS  Code로 nodejs 연결
+파일 - 폴더 열기 - node_works 열기
+
+VS로 터미널 창 여는법 -> 컨트롤키 + 쉬프트 키 + 물결표시 키
+
