@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.biz.bucketlist.persistence.BucketListDao">
+ 
+	<select id="selectAll" resultType="BucketListVO">
+		SELECT * FROM tbl_bucketlist
+	</select>
+ 	
+ 	<select id="findById" resultType="BucketListVO">
+ 		SELECT * FROM tbl_bucketlist WHERE b_id = #{b_id}
+ 	</select>
+ 	
+ 	<insert id="insert" parameterType="BucketListVO">
+		INSERT INTO tbl_bucketlist(	 		
+				B_ID,
+				BUCKETLISTNAME,
+				BUCKETLISTSDATE,
+				BUCKETLISTDEADLINE,
+				BUCKETLISTACHIVEDATE
+				
+		) VALUES (
+				
+				SEQ_BUCKET.NEXTVAL,
+				#{bucketlistname,jdbcType=VARCHAR},
+				#{bucketlistsdate,jdbcType=VARCHAR},
+				#{bucketlistdeadline,jdbcType=VARCHAR},
+				#{bucketlistachivedate,jdbcType=VARCHAR}
+				)
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="BucketListVO">
+ 	
+ 		UPDATE tbl_bucketlist SET
+			 	
+				BUCKETLISTNAME = #{bucketlistname,jdbcType=VARCHAR},
+				BUCKETLISTSDATE = #{bucketlistsdate,jdbcType=VARCHAR},
+				BUCKETLISTDEADLINE = #{bucketlistdeadline,jdbcType=VARCHAR},
+				BUCKETLISTACHIVEDATE = #{bucketlistachivedate,jdbcType=VARCHAR},
+				CHECKED = #{checked,jdbcType=VARCHAR}
+				
+				
+			WHERE
+				B_ID = #{b_id,jdbcType=VARCHAR}	
+				
+ 	</update>
+ 	
+ 	<delete id="delete">
+ 		DELETE FROM tbl_bucketlist WHERE B_ID = #{b_id,jdbcType=VARCHAR}
+ 	</delete>
+ 
+ </mapper> 
