@@ -15,4 +15,6 @@
 - PPT 포트폴리오 작성 및 발표 준비
 
 ## 주요 화면
-<img width="400" src="https://user-images.githubusercontent.com/54340885/77391624-91870880-6ddc-11ea-9a83-55c03ac60230.PNG">
+<img width="800" src="https://user-images.githubusercontent.com/54340885/77391624-91870880-6ddc-11ea-9a83-55c03ac60230.PNG">
+
+<img width="800" src="https://user-images.githubusercontent.com/54340885/77391643-9a77da00-6ddc-11ea-8f09-f03afcb02266.PNG">
