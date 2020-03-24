@@ -81,6 +81,11 @@ tbody.tbody-list tr:hover {
 	background-color: #eee;
 }
 
+.btn-div {
+	display: block;
+	text-align: right
+}
+
 
 </style>
 </head>
@@ -156,7 +161,9 @@ tbody.tbody-list tr:hover {
 			</table>
 		</article>
 		<article>
-				<button class="btn btn-outline-primary btn-insert ml">추가</button>
+			<div class="btn-div">
+				<button class="btn btn-outline-primary btn-insert ml-auto">추가</button>
+			</div>
 		</article>
 	</section>
 

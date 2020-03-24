@@ -48,6 +48,10 @@
 		width: 768px;
 		margin: auto;
 	}
+	.btn-group{
+		display: block;
+		text-align: right;
+	}
 </style>
 </head>
 <header class="jumbotron">
