@@ -13,3 +13,6 @@
 - 기본 CRUD 구현
 
 - PPT 포트폴리오 작성 및 발표 준비
+
+## 주요 화면
+<img width="400" src="https://user-images.githubusercontent.com/54340885/77391624-91870880-6ddc-11ea-9a83-55c03ac60230.PNG">
