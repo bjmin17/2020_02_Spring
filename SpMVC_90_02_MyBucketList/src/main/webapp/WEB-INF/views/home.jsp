@@ -72,8 +72,9 @@
 	})
 </script>
 <style>
-body {
-	width: 768px;
+
+body{
+	width:768px;
 	margin: auto;
 }
 
@@ -85,6 +86,31 @@ tbody.tbody-list tr:hover {
 	display: block;
 	text-align: right
 }
+
+table td {
+	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 768px) {
+
+body {
+	width: 95%;
+	margin: auto;
+}
+
+tbody.tbody-list tr:hover {
+	background-color: #eee;
+}
+
+.btn-div {
+	display: block;
+	text-align: right
+}
+	
+
+}
+
+
 
 
 </style>
@@ -106,6 +132,7 @@ tbody.tbody-list tr:hover {
 					<th>달성여부</th>
 					<th>비고</th>
 				</tr>
+				
 				<c:choose>
 					<c:when test="${empty BUCKETLIST}">
 						<td colspan="7">버킷리스트가 없습니다.</td>

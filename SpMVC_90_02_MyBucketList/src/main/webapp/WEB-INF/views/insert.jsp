@@ -44,13 +44,17 @@
 	})
 </script>
 <style>
-	body{
-		width: 768px;
-		margin: auto;
-	}
-	.btn-group{
-		display: block;
-		text-align: right;
+	
+	@media screen and (max-width: 768px) {
+		body{
+			width: 768px;
+			margin: auto;
+		}
+		.btn-group{
+			display: block;
+			text-align: right;
+		}
+	
 	}
 </style>
 </head>
