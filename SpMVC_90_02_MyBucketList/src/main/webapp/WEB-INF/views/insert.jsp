@@ -45,9 +45,13 @@
 </script>
 <style>
 	
+	body {
+		width:90%;
+		margin: auto;
+	}
 	@media screen and (max-width: 768px) {
 		body{
-			width: 768px;
+			width: 90%;
 			margin: auto;
 		}
 		.btn-group{

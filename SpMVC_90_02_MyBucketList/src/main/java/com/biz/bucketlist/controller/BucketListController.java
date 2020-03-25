@@ -64,7 +64,7 @@ public class BucketListController {
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public String update(BucketListVO bucketlistVO, Model model, String dummy) {
-		
+		log.debug("컨트롤러 VO : "  + bucketlistVO.getChecked());
 		int ret = bSerice.update(bucketlistVO);
 		
 		return "redirect:/";
