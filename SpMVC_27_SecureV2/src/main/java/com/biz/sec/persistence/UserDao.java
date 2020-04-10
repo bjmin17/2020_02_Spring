@@ -12,9 +12,11 @@ public interface UserDao {
 	public List<UserVO> selectAll();
 	
 	// VO와 이름 같게 하기 위해 AS로 알리아스 설정해서 username이라고 정한다.
-	@Select("SELECT user_name AS username "
-			+ " FROM tbl_users WHERE user_name = #{username}")
-	public String findByUserName(String username);
+	@Select(" SELECT user_name AS username, "
+			+ " user_pass AS password, "
+			+ " enabled "
+			+ " FROM tbl_users WHERE user_name = #{username} ")
+	public UserVO findByUserName(String username);
 	
-	public int insert(Map<String,String> userMap);
+	public int insert(UserVO userVO);
 }

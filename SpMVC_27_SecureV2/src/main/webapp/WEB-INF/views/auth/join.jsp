@@ -50,6 +50,7 @@
 			let username = $(this).val()
 			if(username == "") {
 				$("#m_username").text("아이디는 반드시 입력해야 합니다")
+				$("#username").focus()
 				return false;
 			}
 			
@@ -59,14 +60,19 @@
 				data : {username : username},
 				success : function(result) {
 					
-					if(result == "USE") {
-						$("#m_username").text("* 이미 가입된 사용자 이름입니다.")
+					if(result == "EXISTS") {
+						
+						$("#m_username").text("* 이미 가입된 사용자이름 입니다.")
 						$("#m_username").css("color","red")
+						$("#username").focus()
 						return false
+					} else {
+						$("#m_username").text("* 사용가능한 사용자ID")
 					}
 					
 				},
 				error:function(){
+					$("#m_username").text("* 서버통신오류.")
 					//alert("서버와 통신 오류")
 				}
 				
