@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@ include file="/WEB-INF/views/include/include-head.jspf" %>	
+<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +19,18 @@ $(function(){
 </head>
 <body>
 	<section class="container">
-		<form action="${rootPath}/user/login" method="POST">
+		<form:form action="${rootPath}/login" method="POST">
 			<div class="container p-3 my-3 bg-primary text-white text-center">
 				<h2>로그인</h2>
 			</div>
+			
+			<div>
+				<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+					<span>${SPRING_SECURITY_LAST_EXCEPTION.message}</span>
+				
+				</c:if>
+			</div>
+			
 			<div class="form-group">
 				<label for="username">User ID</label> 
 				<input type="text" class="form-control"	id="username" name="username" placeholder="User ID">
@@ -35,7 +44,7 @@ $(function(){
 				<button class="btn btn-success join" type="button">회원가입</button>
 			</div> 
 			
-		</form>
+		</form:form>
 	</section>
 
 </body>

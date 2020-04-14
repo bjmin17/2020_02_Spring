@@ -6,12 +6,12 @@ import java.util.Map;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.biz.sec.domain.UserDetailsVO;
 import com.biz.sec.domain.UserVO;
 import com.biz.sec.persistence.UserDao;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Service
 public class UserService {
 	
@@ -20,6 +20,34 @@ public class UserService {
 	
 	private final UserDao userDao;
 	
+	public UserService(PasswordEncoder passwordEncoder, UserDao userDao) {
+		super();
+		this.passwordEncoder = passwordEncoder;
+		this.userDao = userDao;
+		
+		String create_user_table = 
+				" CREATE TABLE IF NOT EXISTS tbl_users(" + 
+				"	id bigint PRIMARY KEY AUTO_INCREMENT," + 
+				"	user_name varchar(50) UNIQUE," + 
+				"    user_pass varchar(125)," + 
+				"    enabled boolean default true," +
+				"    email varchar(50)," + 
+				"    phone varchar(20)," + 
+				"    address varchar(125)" + 
+				" ) ";
+		
+		String create_auth_table =
+				" CREATE TABLE IF NOT EXISTS authorities(" + 
+				"	id bigint PRIMARY KEY AUTO_INCREMENT," + 
+				"    username varchar(50)," + 
+				"    authority varchar(50)" + 
+				" ) ";
+		
+		userDao.create_table(create_user_table);
+		userDao.create_table(create_auth_table);
+	}
+
+
 	/**
 	 * @Since 2020-04-09
 	 * @author bjmin17
@@ -58,7 +86,7 @@ public class UserService {
 
 	public boolean isExistsUserName(String username) {
 
-		UserVO userVO = userDao.findByUserName(username);
+		UserDetailsVO userVO = userDao.findByUserName(username);
 		// 이미 DB에 회원정보(username)이 저장되어 있다.
 		if(userVO != null && userVO.getUsername().equalsIgnoreCase(username)) {
 			return true;
@@ -66,6 +94,13 @@ public class UserService {
 		
 		return false;
 		
+	}
+
+
+	public UserDetailsVO findById(long id) {
+		UserDetailsVO userVO = userDao.findById(id);
+		
+		return userVO;
 	}
 	
 	

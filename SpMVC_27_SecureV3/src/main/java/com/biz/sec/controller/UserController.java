@@ -1,10 +1,14 @@
 package com.biz.sec.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.biz.sec.domain.UserDetailsVO;
 import com.biz.sec.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -60,9 +64,16 @@ public class UserController {
 		return "user HOME";
 	}
 	
-	@ResponseBody
 	@RequestMapping(value="/mypage",method=RequestMethod.GET)
-	public String mypage() {
-		return "user mypage";
+	public String mypage(Principal principal, long id,Model model) {
+		log.debug("############"+principal);
+//		long lId = 0;
+//		lId = id;
+		UserDetailsVO userVO = userService.findById(id);
+		model.addAttribute("userVO",userVO);
+//		return "user/mypage";
+		
+		// log.debug("#############"+ userVO.getAuthorities().toString());
+		return "user/mypage";
 	}
 }

@@ -79,6 +79,25 @@
 			})
 			
 		})
+		// 현재 DOM 화면에 class가 view_pass인 모든것에 적용하라
+		$(".view_pass").each(function(index,input){
+			// 매개변수로 전달된 input을 선택하여
+			// 변수 $input에 임시 저장
+			let $input = $(input)
+			$("input#view_pass").click(function(){
+				let change = $(this).is(":checked") ? "text" : "password";
+				// 가상의 input 생성
+				// <input type='text'> 또는 <input type='password'>
+				let ref = $("<input type='" + change + "' />'")
+					.val($input.val())
+					.insertBefore($input);
+				
+				// 앞에 있는 input 지우고 새로 입력하라
+				$input.remove();
+				$input = ref;
+			})
+			
+		})
 		
 	})
 </script>
@@ -105,11 +124,16 @@
 			<div class="message" id="m_username"></div>
 			<div class="form-group">
 				<label for="password">비밀번호</label> 
-				<input type="password"	class="form-control" id="password" name="password"	placeholder="비밀번호">
+				<input type="password"	class="form-control view_pass" id="password" name="password"	placeholder="비밀번호">
 			</div>
 			<div class="form-group">
 				<label for="re_password">비밀번호 확인</label> 
-				<input type="password"	class="form-control" id="re_password" name="re_password"	placeholder="비밀번호 확인">
+				<input type="password"	class="form-control view_pass" id="re_password" name="re_password"	placeholder="비밀번호 확인">
+			</div>
+			<div class="option">
+				<label for="view_pass">
+					<input type="checkbox" id="view_pass">비밀번호 보이기
+				</label>
 			</div>
 			<div class="mb-3">
 				<button type="button" class="btn btn-primary" id="btn-join">회원가입</button>

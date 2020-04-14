@@ -1,4 +1,4 @@
-package com.biz.sec.service;
+package com.biz.sec.service.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
  * UserDetailService 인터페이스를 가져와서 Customizing 한다.
  */
 @RequiredArgsConstructor
-@Service
+@Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService{
 
 	/*
@@ -54,12 +54,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		// DB로부터 사용자 정보 가져오기
-		UserVO userVO = userDao.findByUserName(username);
+//		UserVO userVO = userDao.findByUserName(username);
+		
 		
 		// spring security가 사용할 DetailVO 선언
-		UserDetailsVO userDetails = new UserDetailsVO();
-		userDetails.setUsername(userVO.getUsername());
-		userDetails.setPassword(userVO.getPassword());
+		UserDetailsVO userDetails = userDao.findByUserName(username);
+//		userDetails.setUsername(userVO.getUsername());
+//		userDetails.setPassword(userVO.getPassword());
 		userDetails.setEnabled(true);
 		
 		// 사용자 정보를 사용할 수 있는가 아닌가를 세밀하게
@@ -70,17 +71,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		userDetails.setAuthorities(this.getAuthorities(username));
 		
-		// builder pattern을 이용하면
-		userDetails = UserDetailsVO.builder()
-						.username(userVO.getUsername())
-						.password(userVO.getPassword())
-						.enabled(true)
-						.accountNonExpired(true)
-						.accountNonLocked(true)
-						.credentialsNonExpired(true)
-						.authorities(this.getAuthorities(username))
-						.build();
-						
+		userDetails.setPhone("010-111-1234");
+		userDetails.setEmail("bjmin17@naver.com");
+		userDetails.setAddress("광주광역시");
 		
 		return userDetails;
 	}
