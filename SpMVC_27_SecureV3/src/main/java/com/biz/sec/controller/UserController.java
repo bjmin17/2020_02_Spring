@@ -2,6 +2,7 @@ package com.biz.sec.controller;
 
 import java.security.Principal;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,11 +66,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/mypage",method=RequestMethod.GET)
-	public String mypage(Principal principal, long id,Model model) {
+	public String mypage(Principal principal, Model model) {
 		log.debug("############"+principal);
 //		long lId = 0;
 //		lId = id;
-		UserDetailsVO userVO = userService.findById(id);
+//		UserDetailsVO userVO = userService.findById(id);
+		UsernamePasswordAuthenticationToken upa = (UsernamePasswordAuthenticationToken)principal;
+		UserDetailsVO userVO = (UserDetailsVO)upa.getPrincipal();
+		
 		model.addAttribute("userVO",userVO);
 //		return "user/mypage";
 		
