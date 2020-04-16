@@ -14,7 +14,8 @@ public interface UserDao {
 	public void create_table(String create_table);
 	
 	// VO와 이름 같게 하기 위해 AS로 알리아스 설정해서 username이라고 정한다.
-	@Select(" SELECT user_name AS username, "
+	@Select(" SELECT id, "
+			+ " user_name AS username, "
 			+ " user_pass AS password, "
 			+ " enabled, "
 			+ " email, phone, address "
@@ -24,4 +25,6 @@ public interface UserDao {
 	public int insert(UserVO userVO);
 
 	public UserDetailsVO findById(long id);
+
+	public int update(UserDetailsVO userVO);
 }

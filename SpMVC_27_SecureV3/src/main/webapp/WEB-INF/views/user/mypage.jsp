@@ -10,7 +10,7 @@
 	<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
 	<style>
 		#body {
-			height: 2000px;
+			/*height: 2000px;*/
 			width: 70%;
 			margin:auto;
 			margin-top: 150px;
@@ -49,11 +49,15 @@
 			flex-direction: column;
 		}
 		
+		.pre_content span {
+			width: 100px;
+		}
+		
 		button.btn_user {
 			border: 1px solid #bfbfbf;
 	    	background: #fff;
 	    	font-weight: bold;	
-	    	margin-left: auto;
+	    	margin: auto;
 	    	
 			padding:5px 6px ;
 		}
@@ -76,6 +80,7 @@
 		    border: 1;
 		}
 		
+		
 	</style>
 	<section id="body">
 		<article class="user_article">
@@ -83,61 +88,61 @@
 			<hr/>
 			<div>
 				<form>
-				<table class="tbl_mypage">
-					<tr>
-						<th>이름</th>
-						<td>
-							<div class="pre_content">
-								${userVO.username}
-								<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_username">수정</button>
-							</div>
-							<div id="update_username" class="collapse form-group">
-								<input type="text" name="username" class="form-control" placeholder="이름">
-								<button class="btn btn_content" type="button">수정완료</button>
-							</div>
-						</td>
-					<tr>
-					<tr>
-						<th>이메일</th>
-						<td>
-							<div class="pre_content">
-								${userVO.email}
-								<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_email">수정</button>
-							</div>
-							<div id="update_email" class="collapse form-group">
-								<input type="email" name="email" class="form-control" placeholder="이메일">
-								<button class="btn btn_content" type="button">수정완료</button>
-							</div>
-						</td>
-					<tr>
-					<tr>
-						<th>전화번호</th>
-						<td>
-							<div class="pre_content">
-								${userVO.phone}
-								<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_phone">수정</button>
-							</div>
-							<div id="update_phone" class="collapse form-group">
-								<input type="text" name="phone"  class="form-control" placeholder="전화번호">
-								<button class="btn btn_content" type="button">수정완료</button>
-							</div>
-						</td>
-					<tr>
-					<tr>
-						<th>주소</th>
-						<td>
-							<div class="pre_content">
-								${userVO.address}
-								<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_addr">수정</button>
-							</div>
-							<div id="update_addr" class="collapse form-group">
-								<input type="text" name="address"  class="form-control" placeholder="주소">
-								<button class="btn btn_content" type="button">수정완료</button>
-							</div>
-						</td>
-					<tr>
-				</table>
-					</form>
+					<table class="tbl_mypage">
+						<tr>
+							<th>이름</th>
+							<td>
+								<div class="pre_content">
+									<span>${userVO.username}</span>
+									<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_username">수정</button>
+								</div>
+								<div id="update_username" class="collapse form-group">
+									<input type="text" name="username" class="form-control" placeholder="이름">
+									<button class="btn btn_content" type="button">수정완료</button>
+								</div>
+							</td>
+						<tr>
+						<tr>
+							<th>이메일</th>
+							<td>
+								<div class="pre_content">
+									<span>${userVO.email}</span>
+									<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_email">수정</button>
+								</div>
+								<div id="update_email" class="collapse form-group">
+									<input type="email" name="email" class="form-control" placeholder="이메일">
+									<button class="btn btn_content" type="button">수정완료</button>
+								</div>
+							</td>
+						<tr>
+						<tr>
+							<th>전화번호</th>
+							<td>
+								<div class="pre_content">
+									<span>${userVO.phone}</span>
+									<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_phone">수정</button>
+								</div>
+								<div id="update_phone" class="collapse form-group">
+									<input type="text" name="phone"  class="form-control" placeholder="전화번호">
+									<button class="btn btn_content" type="button">수정완료</button>
+								</div>
+							</td>
+						<tr>
+						<tr>
+							<th>주소</th>
+							<td>
+								<div class="pre_content">
+									<span>${userVO.address}</span>
+									<button type="button" class="btn btn_user" data-toggle="collapse" data-target="#update_addr">수정</button>
+								</div>
+								<div id="update_addr" class="collapse form-group">
+									<input type="text" name="address"  class="form-control" placeholder="주소">
+									<button class="btn btn_content" type="button">수정완료</button>
+								</div>
+							</td>
+						<tr>
+					</table>
+				</form>
 			</div>
 		</article>
 	</section>
