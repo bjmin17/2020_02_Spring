@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+section{
+	border: 1px solid gray;
+	margin-top: 15%;
+	width:500px;
+}
+
+section.container{
+	border: 1px solid gray;
+	margin-top: 15%;
+	width:500px;
+}
