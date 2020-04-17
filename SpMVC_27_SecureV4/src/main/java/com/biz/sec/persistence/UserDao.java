@@ -5,24 +5,18 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 
 import com.biz.sec.domain.UserDetailsVO;
-import com.biz.sec.domain.UserVO;
 
 public interface UserDao {
 
-	public List<UserVO> selectAll();
+	public List<UserDetailsVO> selectAll();
 	
 	public void create_table(String create_table);
 	
 	// VO와 이름 같게 하기 위해 AS로 알리아스 설정해서 username이라고 정한다.
-	@Select(" SELECT id, "
-			+ " user_name AS username, "
-			+ " user_pass AS password, "
-			+ " enabled, "
-			+ " email, phone, address "
-			+ " FROM tbl_users WHERE user_name = #{username} ")
+	
 	public UserDetailsVO findByUserName(String username);
 	
-	public int insert(UserVO userVO);
+	public int insert(UserDetailsVO userVO);
 
 	public UserDetailsVO findById(long id);
 

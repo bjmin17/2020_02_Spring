@@ -86,6 +86,6 @@ $(function(){
 		<a href="${rootPath}/user/mypage">MY PAGE</a>
 	</sec:authorize>
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<a href="#">관리자 홈</a>
+		<a href="${rootPath}/admin">관리자 홈</a>
 	</sec:authorize>
 </nav>

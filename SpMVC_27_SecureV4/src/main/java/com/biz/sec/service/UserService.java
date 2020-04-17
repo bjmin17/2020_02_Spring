@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.sec.domain.AuthorityVO;
 import com.biz.sec.domain.UserDetailsVO;
-import com.biz.sec.domain.UserVO;
 import com.biz.sec.persistence.AuthoritiesDao;
 import com.biz.sec.persistence.UserDao;
 
@@ -83,7 +82,7 @@ public class UserService {
 		String encPassword = passwordEncoder.encode(password);
 		// 암호화한 비밀번호를 전달
 //		UserVO userVO = new UserVO(username,encPassword,true);
-		UserVO userVO = UserVO.builder()
+		UserDetailsVO userVO = UserDetailsVO.builder()
 							.username(username)
 							.password(encPassword).build();
 		
@@ -135,18 +134,10 @@ public class UserService {
 		return passwordEncoder.matches(password,userVO.getPassword());
 	}
 
-	@Transactional
 	public int update(UserDetailsVO userVO,String[] authList) {
 		
-		Authentication oldAuth = SecurityContextHolder.getContext().getAuthentication();
-		
-		UserDetailsVO oldUserVO = (UserDetailsVO) oldAuth.getPrincipal();
-		
-		oldUserVO.setEmail(userVO.getEmail());
-		oldUserVO.setPhone(userVO.getPhone());
-		oldUserVO.setAddress(userVO.getAddress());
-		
 		int ret = userDao.update(userVO);
+		
 		// DB update가 성공하면
 		// 로그인된 session 정보를 update 수행
 		if(ret > 0) {
@@ -165,11 +156,31 @@ public class UserService {
 			
 			authDao.delete(userVO.getUsername());
 			authDao.insert(authCollection);
-			
+		}
+		
+		return ret;
+	}
+	
+	@Transactional
+	public int update(UserDetailsVO userVO) {
+		
+		Authentication oldAuth = SecurityContextHolder.getContext().getAuthentication();
+		
+		UserDetailsVO oldUserVO = (UserDetailsVO) oldAuth.getPrincipal();
+		
+		oldUserVO.setEmail(userVO.getEmail());
+		oldUserVO.setPhone(userVO.getPhone());
+		oldUserVO.setAddress(userVO.getAddress());
+		
+		int ret = userDao.update(userVO);
+		// DB update가 성공하면
+		// 로그인된 session 정보를 update 수행
+		if(ret > 0) {
+
 			// 새로운 session 정보를 만들때 oldUserVO로 세팅을 한다.
 			Authentication newAuth = new UsernamePasswordAuthenticationToken(oldUserVO, // 변경된 사용자 정보 
 					oldAuth.getCredentials(), 
-					this.getAuthorities(authList)// 변경된 ROLE 정보
+					oldAuth.getAuthorities()// 변경된 ROLE 정보
 					);
 //			 get으로 뽑아낸것중에 credential만 new Auth로 바꾸고 context에 세팅해주기
 			SecurityContextHolder.getContext().setAuthentication(newAuth);
@@ -191,6 +202,17 @@ public class UserService {
 		}
 		
 		return authorities;
+	}
+
+
+	@Transactional
+	public List<UserDetailsVO> selectAll() {
+		return userDao.selectAll();
+	}
+
+
+	public UserDetailsVO findByUserName(String username) {
+		return userDao.findByUserName(username);
 	}
 	
 	

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.biz.sec.domain.AuthorityVO;
 import com.biz.sec.domain.UserDetailsVO;
-import com.biz.sec.domain.UserVO;
 import com.biz.sec.persistence.AuthoritiesDao;
 import com.biz.sec.persistence.UserDao;
 
@@ -65,7 +64,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 //		userDetails.setUsername(userVO.getUsername());
 //		userDetails.setPassword(userVO.getPassword());
-		userVO.setEnabled(true);
+//		userVO.setEnabled(true);
 		
 		// 사용자 정보를 사용할 수 있는가 아닌가를 세밀하게
 		// 제어하기 위한 칼럼
@@ -75,9 +74,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		userVO.setAuthorities(this.getAuthorities(username));
 		
-		userVO.setPhone("010-111-1234");
-		userVO.setEmail("bjmin17@naver.com");
-		userVO.setAddress("광주광역시");
+		// db에 입력되었기 때문에 설정하지 않아도 된다.
+//		userVO.setPhone("010-111-1234");
+//		userVO.setEmail("bjmin17@naver.com");
+//		userVO.setAddress("광주광역시");
 		
 		return userVO;
 	}

@@ -95,7 +95,7 @@ public class UserController {
 		
 		model.addAttribute("userVO",userVO);
 //		return "user/mypage";
-		return "auth/user_view";
+		return "auth/mypage";
 	}
 	
 	@RequestMapping(value="/mypage",method=RequestMethod.GET)
@@ -114,7 +114,7 @@ public class UserController {
 		
 		model.addAttribute("userVO",userVO);
 //		return "user/mypage";
-		return "auth/user_view";
+		return "auth/mypage";
 	}
 	
 	@RequestMapping(value="/mypage",method=RequestMethod.POST)
@@ -129,7 +129,7 @@ public class UserController {
 			oldUserVO.setEmail(userVO.getEmail());
 		 * 코드는 쉬워지나 보안에 치명적인 문제를 일으킬 수 있다.
 		 */
-		int ret = userService.update(userVO, auth);
+		int ret = userService.update(userVO);
 		
 		return "redirect:/user/mypage";
 		/*
@@ -146,4 +146,7 @@ public class UserController {
 		 * 원본은 절대 변경되지 않는다.
 		 */
 	}
+	
+	
+
 }
