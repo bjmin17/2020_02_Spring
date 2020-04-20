@@ -60,12 +60,14 @@
 				(
 				`user_name`,
 				`user_pass`,
+				`email`,
 				`enabled`)
 				VALUES
 				(
 				#{username},
 				#{password},
-				true)
+				#{email},
+				#{enabled})
  	</insert>
  	
  	<update id="update" parameterType="userDetailsVO">

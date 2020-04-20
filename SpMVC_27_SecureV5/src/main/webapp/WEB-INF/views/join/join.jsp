@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
 <link rel="stylesheet" href="${rootPath}/resources/css/login.css?ver=202004090953">
 <script>
 	$(function(){
@@ -102,7 +102,9 @@
 	})
 </script>
 </head>
+
 <body>
+	<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
 	<section class="container">
 		<style>
 			.message {
@@ -110,7 +112,7 @@
 				font-size: 0.3rem;
 			}
 		</style>
-		<form:form method="POST" action="${rootPath}/user/join">
+		<form:form method="POST" action="${rootPath}/join/user" modelAttribute="userVO">
 			<div class="container p-3 my-3 bg-primary text-white">
 				<h2>회원가입</h2>
 			</div>
@@ -119,12 +121,12 @@
 			-->
 			<div class="form-group">
 				<label for="username">User ID</label> 
-				<input type="text"	class="form-control" id="username" name="username"	placeholder="User ID">
+				<form:input type="text"	class="form-control" path="username" placeholder="User ID"/>
 			</div>
 			<div class="message" id="m_username"></div>
 			<div class="form-group">
 				<label for="password">비밀번호</label> 
-				<input type="password"	class="form-control view_pass" id="password" name="password"	placeholder="비밀번호">
+				<form:input type="password"	class="form-control view_pass" path="password" placeholder="비밀번호"/>
 			</div>
 			<div class="form-group">
 				<label for="re_password">비밀번호 확인</label> 

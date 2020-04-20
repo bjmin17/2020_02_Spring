@@ -12,7 +12,7 @@
 <script>
 $(function(){
 	$(document).on("click","button.join",function(){
-		document.location.href="${rootPath}/user/join"
+		document.location.href="${rootPath}/join"
 	})
 })
 </script>

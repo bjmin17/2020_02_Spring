@@ -95,3 +95,13 @@
 
 	<form:form> ... </form:form> 
 * 형식의 form 화면을 작성하면 Spring form taglib는 자동으로 토큰을 form 화면코드에 추가하여 별도의 조치를 취하지 않아도 문제가 발생하지 않도록 만들어준다.
+
+## E-mail 인증 회원가입
+* 회원가입을 할 때 username, password, email을 입력받고 email을 사용자에게 보낸 후 email인증을 수행하여 회원가입을 완료한다.
+* 회원가입을 위해 화면을 username, password를 입력받는 화면과, email을 입력받는 화면으로 분리하는 2개의 화면으로 이루어진 기능을 구현
+
+* sessionAttributes, ModelAttribute를 활용하여 구현
+* sessionAttributes는 보통 vo 객체를 서버 메모리에 저장한 후 form 화면과 연동하는 구현으로 이때 반드시 ModelAttribute가 동반되어 구현되어야 한다.
+* sessionAttributes에 등록된 vo 객체는 서버 메모리에 데이터를 보관하고 있다가 form:form를 통해서 서버로 전달되는 param vo 객체를 받고,
+	form:form에서 누락된 input 항목들이 있으면 메모리에 보관된 ModelAttribute vo에서 param vo 데이터를 완성하여 사용할 수 있도록 만들어준다. 
+

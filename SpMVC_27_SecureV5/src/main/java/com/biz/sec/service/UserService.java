@@ -1,5 +1,6 @@
 package com.biz.sec.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.biz.sec.domain.AuthorityVO;
 import com.biz.sec.domain.UserDetailsVO;
 import com.biz.sec.persistence.AuthoritiesDao;
 import com.biz.sec.persistence.UserDao;
+import com.biz.sec.utils.PbeEncryptor;
 
 @Service
 public class UserService {
@@ -27,11 +29,17 @@ public class UserService {
 	private final UserDao userDao;
 	private final AuthoritiesDao authDao;
 	
-	public UserService(PasswordEncoder passwordEncoder, UserDao userDao, AuthoritiesDao authDao) {
+	private final MailSendService mailService;
+	
+	public UserService(PasswordEncoder passwordEncoder, 
+			UserDao userDao, 
+			AuthoritiesDao authDao,
+			MailSendService mailService) {
 		super();
 		this.passwordEncoder = passwordEncoder;
 		this.userDao = userDao;
 		this.authDao = authDao;
+		this.mailService = mailService;
 		
 		String create_user_table = 
 				" CREATE TABLE IF NOT EXISTS tbl_users(" + 
@@ -76,12 +84,7 @@ public class UserService {
 	public int insert(String username, String password) {
 		
 		// 회원가입 form에서 전달받은 password 값을 암호화시키는 과정
-		
-		
-		
 		String encPassword = passwordEncoder.encode(password);
-		// 암호화한 비밀번호를 전달
-//		UserVO userVO = new UserVO(username,encPassword,true);
 		UserDetailsVO userVO = UserDetailsVO.builder()
 							.username(username)
 							.password(encPassword).build();
@@ -101,6 +104,52 @@ public class UserService {
 		return ret;
 	}
 
+	/**
+	 * @since 2020-04-20
+	 * @author bjmin17
+	 * 
+	 * 새로 작성된 회원가입에서 회원가입을 처리할 method
+	 * 
+	 * email 인증방식으로 회원가입을 처리할 것이므로
+	 * userVO를 파라메터로 받아서 
+	 * enabled를 false로 처리하고
+	 * role 정보는 업데이트하지 않는 것으로 처리해 놓는다.
+	 * 
+	 * 이후 email 인증이 오면
+	 * enabled와 role 정보를 설정하도록 한다.
+	 * 
+	 * @param userVO
+	 * @return
+	 */
+	
+	@Transactional
+	public int insert(UserDetailsVO userVO) {
+//	public String insert(UserDetailsVO userVO) {
+
+		// 회원정보에 저장할 준비가 되지만
+		// 로그인을 했을 때 접근 금지가 된 사용자가 된다.
+		userVO.setEnabled(false);
+		userVO.setAuthorities(null);
+		
+		// 회원가입 form에서 전달받은 password 값을 암호화시키는 과정
+		String encPassword = passwordEncoder.encode(userVO.getPassword());
+		userVO.setPassword(encPassword);
+		
+//		boolean bRet = mailService.join_send(userVO);
+		String sRet;
+		try {
+			sRet = mailService.join_send(userVO);
+//			return sRet;
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int ret = userDao.insert(userVO);
+		
+		return ret;
+	}
+	
 
 	public boolean isExistsUserName(String username) {
 
@@ -214,6 +263,35 @@ public class UserService {
 	public UserDetailsVO findByUserName(String username) {
 		return userDao.findByUserName(username);
 	}
-	
+
+
+	@Transactional
+	public boolean emailok(String username, String email) {
+
+		String strUserName = PbeEncryptor.getDecrypt(username);
+		UserDetailsVO userVO = userDao.findByUserName(strUserName);
+		
+		String strEmail = PbeEncryptor.getDecrypt(email);
+		if(strEmail.equalsIgnoreCase(userVO.getEmail())) {
+			userVO.setEnabled(true);
+			
+			userDao.update(userVO);
+			
+			List<AuthorityVO> authList = new ArrayList();
+			authList.add(AuthorityVO.builder()
+					.username(userVO.getUsername())
+					.authority("ROLE_USER").build());
+			authList.add(AuthorityVO.builder()
+					.username(userVO.getUsername())
+					.authority("USER").build());
+			
+			authDao.insert(authList);
+			return true;
+		}
+		return false;
+	}
+
+
+
 	
 }
