@@ -40,7 +40,7 @@
 		color: black;
 	}
 	
-	#navbar a:nth-child(4) {
+	#navbar a:nth-child(2) {
 		margin-left: auto;
 		background-color: #ddd;
 		color: black;
@@ -74,9 +74,7 @@ $(function(){
 
 </script>
 <nav id="navbar">
-	<a href="/">HOME</a>
-	<a href="#">성적처리</a>
-	<a href="#">독서록관리</a>
+	<a href="${rootPath}/">HOME</a>
 	
 	<sec:authorize access="isAnonymous()">
 		<a href="${rootPath}/user/login">로그인</a>

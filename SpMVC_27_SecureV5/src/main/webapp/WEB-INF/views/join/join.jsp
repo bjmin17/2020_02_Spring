@@ -88,7 +88,7 @@
 				let change = $(this).is(":checked") ? "text" : "password";
 				// 가상의 input 생성
 				// <input type='text'> 또는 <input type='password'>
-				let ref = $("<input type='" + change + "' />'")
+				let ref = $("<input class='form-control view_pass'  placeholder='비밀번호' type='" + change + "' />'")
 					.val($input.val())
 					.insertBefore($input);
 				
@@ -101,6 +101,11 @@
 		
 	})
 </script>
+	<style>
+		section.container {
+			border-radius: 10px; 
+		}
+	</style>
 </head>
 
 <body>
@@ -112,7 +117,7 @@
 				font-size: 0.3rem;
 			}
 		</style>
-		<form:form method="POST" action="${rootPath}/join/user" modelAttribute="userVO">
+		<form:form method="POST" action="${rootPath}/join/join_next" modelAttribute="userVO">
 			<div class="container p-3 my-3 bg-primary text-white">
 				<h2>회원가입</h2>
 			</div>

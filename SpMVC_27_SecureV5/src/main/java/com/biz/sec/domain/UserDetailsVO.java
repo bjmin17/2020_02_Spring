@@ -22,7 +22,7 @@ import lombok.ToString;
  * 
  * User는 Security에서 기본 제공하는 class
  * 
- * @update 2020-04-10
+ * 2020-04-10
  * User 클래스를 상속받아 만든 UserVO를 
  * UserDetails 인터페이스를 implements한 UserDetail로 변경
  * 

@@ -28,7 +28,7 @@ public class HomeController {
 	
 	/**
 	 * security mapping을 Annotation을 사용하여 설정
-	 * @Secured(value={문자열 배열})
+	 * (value에 문자열 배열)
 	 */
 	
 //	@Secured(value= {"ROLE_ADMIN","ROLE_USER"})

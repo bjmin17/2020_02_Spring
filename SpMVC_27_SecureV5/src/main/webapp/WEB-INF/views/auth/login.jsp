@@ -8,16 +8,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="${rootPath}/resources/css/login.css?ver=202004090953">
-<script>
-$(function(){
-	$(document).on("click","button.join",function(){
-		document.location.href="${rootPath}/join"
+	<link rel="stylesheet" href="${rootPath}/resources/css/login.css?ver=202004090953">
+	<%@ include file="/WEB-INF/views/include/include-head.jspf" %>
+	<script>
+	$(function(){
+		$(document).on("click","button.join",function(){
+			document.location.href="${rootPath}/join"
+		})
 	})
-})
-</script>
+	</script>
+	<style>
+		section.container {
+			border-radius: 10px; 
+			height: 360px;
+		}
+	</style>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
 	<section class="container">
 		<form:form action="${rootPath}/login" method="POST">
 			<div class="container p-3 my-3 bg-primary text-white text-center">

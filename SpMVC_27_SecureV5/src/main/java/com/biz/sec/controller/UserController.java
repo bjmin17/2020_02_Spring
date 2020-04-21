@@ -94,8 +94,8 @@ public class UserController {
 		userVO.setAuthorities(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		
 		model.addAttribute("userVO",userVO);
-//		return "user/mypage";
-		return "auth/mypage";
+		return "user/mypage";
+//		return "auth/mypage";
 	}
 	
 	@RequestMapping(value="/mypage",method=RequestMethod.GET)

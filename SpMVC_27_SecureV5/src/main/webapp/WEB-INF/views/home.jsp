@@ -10,7 +10,6 @@
 	<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
 	<style>
 		#body {
-			height: 2000px;
 		}
 	</style>
 	<section id="body">
