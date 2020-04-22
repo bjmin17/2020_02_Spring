@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.biz.sec.domain.AuthorityVO;
@@ -124,7 +125,8 @@ public class UserService {
 	 * @return
 	 */
 	
-	@Transactional
+	@Transactional(isolation = Isolation.READ_COMMITTED,
+				rollbackFor = Exception.class)
 	public int insert(UserDetailsVO userVO) {
 //	public String insert(UserDetailsVO userVO) {
 
@@ -185,6 +187,7 @@ public class UserService {
 		return passwordEncoder.matches(password,userVO.getPassword());
 	}
 
+	@Transactional
 	public int update(UserDetailsVO userVO,String[] authList) {
 		
 		int ret = userDao.update(userVO);
@@ -261,7 +264,7 @@ public class UserService {
 		return userDao.selectAll();
 	}
 
-
+	@Transactional
 	public UserDetailsVO findByUserName(String username) {
 		return userDao.findByUserName(username);
 	}
@@ -303,6 +306,7 @@ public class UserService {
 	 * @param userVO
 	 * @return
 	 */
+	@Transactional
 	public String insert_getToken(UserDetailsVO userVO) {
 		// DB에 저장
 		userVO.setEnabled(false);
