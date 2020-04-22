@@ -70,9 +70,19 @@
 				})
 			})
 			
-			$(document).on("click","#auth_append",function(){
+			$(document).on("change","#auth",function(){
+				/*
+					let item = $(this).val()
+					$("div#auth_list").append($("<input/>",{class:"auth form-control mb-3", name:"auth",value:item}))
+					// alert(item)
+				*/
+			})
 			
-			let auth_input = $("<input/>", {class:"auth", name:"auth"})
+			$(document).on("click","#auth_append",function(){
+
+			
+			let auth_input = $("<input/>", {class:"auth form-control mb-3", name:"auth"})
+			
 			// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
 			$("div#auth_box").append(auth_input)
 		})

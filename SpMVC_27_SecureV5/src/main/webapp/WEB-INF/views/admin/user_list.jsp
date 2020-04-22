@@ -16,14 +16,16 @@
 		padding: 5px;
 	}
 </style>
-<table>
-	<tr>
-		<th>NO</th>
-		<th>UserName</th>
-		<th>Email</th>
-		<th>Phone</th>
-		<th>Address</th>
-	</tr>
+<table class="table table-hover">
+	<thead class="thead-light">
+		<tr>
+			<th>NO</th>
+			<th>UserName</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Address</th>
+		</tr>
+	</thead>
 	
 	<c:choose>
 		<c:when test="${empty userList}">

@@ -18,7 +18,7 @@
 				let pass = $("#password").val()
 				if(pass == "") {
 					alert("수정하려면 비밀번호를 입력한 후 \n"
-							+"다시 수정완료버튼을 클릭하세요")
+							+"다시 수정하기 버튼을 클릭하세요")
 					$("div.password").css("display","block")
 					$("#password").prop("readonly",false)
 					$("#password").focus()
@@ -187,6 +187,7 @@
 			<div class="paswword-div">
 				<div class="password">
 					<input type="password" id="password" class="form-control mt-3 mb-3" placeholder="비밀번호를 입력!!"/>
+					<button class="btn btn_content btn_update">비밀번호 입력</button>
 				</div>
 			</div>
 			<table class="tbl_mypage">
@@ -207,7 +208,7 @@
 						</div>
 						<div id="update_email" class="collapse form-group">
 							<form:input type="email" path="email" class="form-control" placeholder="E-mail"/>
-							<button class="btn btn_content btn_update" type="button">수정완료</button>
+							<button class="btn btn_content btn_update" type="button">수정하기</button>
 							<button class="btn btn_content btn_save">저장</button>
 						</div>
 					</td>
