@@ -352,4 +352,11 @@ public class UserService {
 		return bKey;
 	}
 
+
+	public int delete(long id) {
+
+		int ret = authDao.delete_id(id);
+		return ret;
+	}
+
 }

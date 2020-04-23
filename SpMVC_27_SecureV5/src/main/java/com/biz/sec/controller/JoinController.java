@@ -96,10 +96,10 @@ public class JoinController {
 	@RequestMapping(value="/join_last",method=RequestMethod.POST)
 	public String join_last(@ModelAttribute("userVO") UserDetailsVO userVO,Model model) {
 		
-		String email_token = userService.insert_getToken(userVO);
+//		String email_token = userService.insert_getToken(userVO);
 		
 		model.addAttribute("username",PbeEncryptor.getEncrypt(userVO.getUsername()));
-		model.addAttribute("My_Email_Secret",email_token);
+//		model.addAttribute("My_Email_Secret",email_token);
 		model.addAttribute("JOIN","EMAIL_OK");
 		return "join/join_email";
 	}

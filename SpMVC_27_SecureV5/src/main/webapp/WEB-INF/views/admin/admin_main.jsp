@@ -16,8 +16,10 @@
 		}
 		#body menu {
 			flex:1;
-			border: 1px solid blue;
+			/*border: 1px solid blue;*/
 			margin: 5px;
+			border-right: 1px solid gray; 
+			height: 700px;
 		}
 		
 		#body menu li {
@@ -31,16 +33,17 @@
 			width: 150px;
 			margin-left: 10px;
 			border-bottom: 2px solid transparent;
+			color: blue;
 		}
 		
 		#body menu li a:hover {
-			border-bottom: 2px solid yellow;
+			border-bottom: 2px solid gray;
 			transition : ease 0.3s;
 		}
 		
 		#body article {
 			flex: 3;
-			border: 1px solid blue;
+			/*border: 1px solid blue;*/
 			margin: 5px;
 		}
 	</style>
@@ -79,18 +82,36 @@
 			})
 			
 			$(document).on("click","#auth_append",function(){
-
 			
-			let auth_input = $("<input/>", {class:"auth form-control mb-3", name:"auth"})
+				let auth_input = $("<input/>", {class:"auth form-control mb-3", name:"auth"})
+				// let auth_delete = $("<button class='btn btn-danger' type='button'>&times</button>")
+				// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
+				$("div#auth_box").append(auth_input)
+				// $("div#auth_box").append(auth_delete)
+			})
 			
-			// auth_input.append($("<p/>",{text:'제거',class:'auth_delete'}))
-			$("div#auth_box").append(auth_input)
-		})
+			/*$(".btn-delete").click(function(){*/
+			$(document).on("click",".btn-delete",function(){
+				
+				let id = $(this).data("id")
+				let username = $(this).data("username")
+				if (confirm("권한을 삭제하겠습니까?")) {
+					// document.location.replace("${rootPath}/admin/delete?id=" + id)
+					
+					$.get("${rootPath}/admin/delete?id=" + id +"&username=" + username, function(result){
+							$("#admin_content").html(result)
+						}		
+					)
+				}
+				//alert(id)
+			})
+			
 		})
 	</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
+	
 	<section id="body">
 		<menu>
 			<h3>관리자 페이지</h3>

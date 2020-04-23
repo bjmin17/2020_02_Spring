@@ -81,8 +81,13 @@ form input.auth {
 					<c:forEach items="${userVO.authorities}" var="auth"
 					varStatus="index">
 						<!-- <p>${index.index+1}번째권한 : ${auth.authority}</p> -->
-						<input name="auth" value="${auth.authority}" class="auth form-control mb-3">
-
+						<!-- <input name="auth" value="${auth.authority}" class="auth form-control mb-3"> -->
+<div class="input-group mb-3">
+  <input name="auth" value="${auth.authority}" class="auth form-control" placeholder="Search">
+  <div class="input-group-append">
+    <button class="btn btn-danger btn-delete" type="button" data-id="${auth.id}" data-username="${auth.username}">&times</button>
+  </div>
+</div>
 					</c:forEach>
 				</div>
 			</c:if>

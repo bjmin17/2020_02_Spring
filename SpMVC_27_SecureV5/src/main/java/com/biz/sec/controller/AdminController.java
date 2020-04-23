@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.biz.sec.domain.UserDetailsVO;
 import com.biz.sec.service.UserService;
@@ -49,6 +50,15 @@ public class AdminController {
 	public String mypage( String username, UserDetailsVO userVO, String[] auth, Model model) {
 		
 		int ret = userService.update(userVO, auth);
+		return "redirect:/admin/user_detail_view/" + userVO.getUsername();
+	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String auth_delete(@RequestParam("id") long id, UserDetailsVO userVO) {
+		
+		int ret = userService.delete(id);
+		
+//		return "redirect:/admin";
 		return "redirect:/admin/user_detail_view/" + userVO.getUsername();
 	}
 		

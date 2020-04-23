@@ -21,6 +21,9 @@ public interface AuthoritiesDao {
 	
 	@Delete("DELETE FROM authorities WHERE username = #{username}")
 	int delete(String username);
+
+	@Delete("DELETE FROM authorities WHERE id = #{id}")
+	public int delete_id(long id);
 	
 	
 	

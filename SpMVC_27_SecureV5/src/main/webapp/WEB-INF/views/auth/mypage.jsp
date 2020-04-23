@@ -186,8 +186,20 @@
 		<form:form modelAttribute="userVO">
 			<div class="paswword-div">
 				<div class="password">
+					<div class="input-group mb-3 input-group-sm">
+						<div class="input-group-prepend">
+							<span class="input-group-text">비밀번호</span>
+						</div>
+						<input type="password" id="password" class="form-control" placeholder="비밀번호를 입력!!">
+					</div>
+				<!-- 
+					<label for="password">비밀번호 : 
 					<input type="password" id="password" class="form-control mt-3 mb-3" placeholder="비밀번호를 입력!!"/>
+					</label>
 					<button class="btn btn_content btn_update">비밀번호 입력</button>
+				 -->
+				</div>
+				<div>
 				</div>
 			</div>
 			<table class="tbl_mypage">
@@ -222,7 +234,7 @@
 						</div>
 						<div id="update_phone" class="collapse form-group">
 							<form:input type="text" path="phone"  class="form-control" placeholder="전화번호"/>
-							<button class="btn btn_content btn_update" type="button">수정완료</button>
+							<button class="btn btn_content btn_update" type="button">수정하기</button>
 							<button class="btn btn_content btn_save">저장</button>
 						</div>
 					</td>
@@ -236,7 +248,7 @@
 						</div>
 						<div id="update_addr" class="collapse form-group">
 							<form:input type="text" path="address"  class="form-control" placeholder="주소"/>
-							<button class="btn btn_content btn_update" type="button">수정완료</button>
+							<button class="btn btn_content btn_update" type="button">수정하기</button>
 							<button class="btn btn_content btn_save">저장</button>
 						</div>
 					</td>
