@@ -6,7 +6,7 @@
 * Security 기능을 포함한 WebSocket Coding
 * React 기반 Front-End 기능 Coding
 
-[자세히 보기](./security project.pdf)
+[자세히 보기](./security_project.pdf)
 
 #### DB 연동
 * JDBC, MyBatis 연동
