@@ -70,7 +70,7 @@
  		UPDATE tbl_users
  		SET email = #{email},
  			phone = #{phone},
- 			address = #{address},
+ 			address = #{address}
  			
  		WHERE user_name = #{username}
  		

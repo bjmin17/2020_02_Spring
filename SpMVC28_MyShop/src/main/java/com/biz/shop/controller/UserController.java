@@ -40,7 +40,7 @@ public class UserController {
 		
 		int ret = userService.insert(username,password);
 		
-		return "redirect:/";
+		return "redirect:/user/login";
 	}
 	
 	@ResponseBody

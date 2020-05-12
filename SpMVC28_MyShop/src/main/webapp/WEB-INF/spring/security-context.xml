@@ -68,7 +68,7 @@
 		<security:csrf disabled="false"/>
 		
 		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
-		<!--  <security:intercept-url pattern="/user/mypage" access="hasAnyRole('admin','user')"/>-->
+		<security:intercept-url pattern="/user/mypage" access="hasAnyRole('ADMIN','USER')"/>
 		<security:intercept-url pattern="/user/password" access="hasAnyRole('ADMIN','USER')"/>
 		<security:intercept-url pattern="/user/**" access="permitAll()"/>
 		<security:intercept-url pattern="/**" access="permitAll()"/>

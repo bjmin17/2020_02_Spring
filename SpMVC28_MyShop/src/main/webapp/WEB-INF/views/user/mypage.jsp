@@ -35,12 +35,13 @@
 						},
 						success : function(result) {
 							if(result == "PASS_OK") {
+								alert("비밀번호 일치")
 								$("input").prop("readonly",false)
 								$("input").css("color","blue")
 								$("button#btn_save").prop("disabled",false)
-								$("button.btn_save").prop("disabled",false)
+								//$("button.btn_save").prop("disabled",false)
 								$("button#btn_update").prop("disabled",true)
-								$("button.btn_update").prop("disabled",true)
+								//$("button.btn_update").prop("disabled",true)
 							} else {
 								alert("비밀번호가 일치하지 않습니다")
 							}
@@ -59,42 +60,44 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
-	<div class="w3-card-4">
+	<div class="container" style="margin-top:30px">
+		<div class="w3-card-4">
+		
+		<div class="w3-container w3-green">
+		  <h2>${userVO.username}의 MYPAGE</h2>
+		</div>
+		<hr/>
+		
+		<form:form class="w3-container" modelAttribute="userVO">
 	
-	<div class="w3-container w3-green">
-	  <h2>${userVO.username}의 MYPAGE</h2>
-	</div>
-	<hr/>
-	
-	<form:form class="w3-container" modelAttribute="userVO">
-
-		<div class="paswword-div">
-				<div class="password">
-					<div class="input-group mb-3 input-group-sm">
-						<div class="input-group-prepend">
-							<span class="input-group-text">비밀번호</span>
+			<div class="paswword-div">
+					<div class="password">
+						<div class="input-group mb-3 input-group-sm">
+							<div class="input-group-prepend">
+								<span class="input-group-text">비밀번호</span>
+							</div>
+							<input type="password" id="password" class="form-control " placeholder="비밀번호를 입력!!">
 						</div>
-						<input type="password" id="password" class="form-control" placeholder="비밀번호를 입력!!">
 					</div>
 				</div>
-			</div>
+				<p>
+			<label>아이디 : ${userVO.username}</label>
+			<input type="hidden" name="username" value="${userVO.username}">
 			<p>
-		<label>이름 : ${userVO.username}</label>
-		<input type="hidden" name="username" value="${userVO.username}">
+			<label>이메일</label>
+			<input type="email" name="email" class="w3-input" placeholder="이메일" value="${userVO.email}">
+			
+			<label>전화번호</label>
+			<input type="text" name="phone"  class="w3-input" placeholder="전화번호"  value="${userVO.phone}">
+			
+			<label>주소</label>
+			<input type="text" name="address"  class="w3-input" placeholder="주소" value="${userVO.address}">
 		
-		<label>이메일</label>
-		<input type="email" name="email" class="w3-input" placeholder="이메일" value="${userVO.email}">
-		
-		<label>전화번호</label>
-		<input type="text" name="phone"  class="w3-input" placeholder="전화번호"  value="${userVO.phone}">
-		
-		<label>주소</label>
-		<input type="text" name="address"  class="w3-input" placeholder="주소" value="${userVO.address}">
-
-		<button class="btn btn_update" type="button">수정하기</button>
-		<button class="btn btn_save">저장</button>
-	</form:form>
-
-</div>
+			<button class="w3-button w3-white w3-border w3-border-blue w3-round-large btn_update mt-3" type="button">수정하기</button>
+			<button class="w3-button w3-white w3-border w3-border-green w3-round-large btn_save mt-3">저장</button>
+		</form:form>
+	
+		</div>
+	</div>
 </body>
 </html>

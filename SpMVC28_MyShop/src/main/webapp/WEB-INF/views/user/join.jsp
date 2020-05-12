@@ -46,24 +46,26 @@ $(function(){
 </script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
-<div class="w3-container w3-red">
-  <h2>회원가입</h2>
-</div>
-
-<form:form method="POST" action="${rootPath}/user/join">
-  <p>
-  <label>ID</label>
-  <input id="username" name="username" placeholder="User ID" class="w3-input" type="text"></p>
-  <p>
-  <label>PASSWORD</label>
-  <input id="password" name="password" placeholder="비밀번호" class="w3-input" type="password"></p>
-<p>
-  <label>re_PASSWORD</label>
-  <input id="re_password" name="re_password" placeholder="비밀번호" class="w3-input" type="password"></p>
-  
-  <button type="button" id="btn-join">회원가입</button>
-  <button type="button" id="btn-loss">ID/비밀번호 찾기</button>
-</form:form>
+	<%@ include file="/WEB-INF/views/include/include-nav.jspf" %>
+	<div class="container" style="margin-top:30px">
+		<div class="w3-container w3-red">
+		  <h2>회원가입</h2>
+		</div>
+		
+		<form:form method="POST" action="${rootPath}/user/join">
+		  <p>
+		  <label>ID</label>
+		  <input id="username" name="username" placeholder="User ID" class="w3-input" type="text"></p>
+		  <p>
+		  <label>PASSWORD</label>
+		  <input id="password" name="password" placeholder="비밀번호" class="w3-input" type="password"></p>
+		<p>
+		  <label>re_PASSWORD</label>
+		  <input id="re_password" name="re_password" placeholder="비밀번호" class="w3-input" type="password"></p>
+		  
+		  <button class="w3-button w3-white w3-border w3-border-blue w3-round-large" type="button" id="btn-join">회원가입</button>
+		  <button class="w3-button w3-white w3-border w3-border-green w3-round-large" type="button" id="btn-loss">ID/비밀번호 찾기</button>
+		</form:form>
+	</div>
 </body>
 </html>
