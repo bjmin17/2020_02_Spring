@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 public class EncMain {
 	
@@ -30,23 +33,26 @@ public class EncMain {
 		
 		System.out.printf("userName : %s \n", encUserName);
 		System.out.printf("password : %s \n", encPassword);
+
+		ResourceLoader resLoader = new DefaultResourceLoader();
+		Resource res
+		= resLoader.getResource("file:src/main/resources/"
+				+ "db.connection2.properties");
 		
-		String saveFile = "./src/main/webapp/WEB-INF/spring/db.connection.properties";
-		
-		String saveUserName = String.format("mysql.username=ENC(%s)", encUserName);
-		String savePassword = String.format("mysql.password=ENC(%s)", encPassword);
+		String saveUserName = String.format("mysql.username=%s", encUserName);
+		String savePassword = String.format("mysql.password=%s", encPassword);
 		
 		try {
-			PrintWriter out = new PrintWriter(saveFile);
+			PrintWriter out = new PrintWriter(res.getFile());
 			out.println(saveUserName);
 			out.println(savePassword);
 			out.flush();
 			out.close();
+			System.out.println(res.getFile().toString() + "저장 완료");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		scanner.close();
-		System.out.println("db.conneection.properties 저장 완료");
 	}
 }
