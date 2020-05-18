@@ -5,12 +5,14 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.jasypt.encryption.StringEncryptor;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +27,12 @@ import lombok.extern.slf4j.Slf4j;
 // src/main/resources 폴더에 있는 db.conn.properties 파일을 읽어서
 // 사용할 준비를 해달라.
 @PropertySource("classpath:db.connection2.properties")
+
+//<tx:annotaion-driven/>
+@EnableTransactionManagement
+
+//<mybatis-spring:scan base-package="com.biz.rent.mapper">
+@MapperScan("com.biz.shop.persistence")
 public class DBSetupConfig {
 
 	// property에 저장되어 있는 mysql.username의 값을 읽어서
