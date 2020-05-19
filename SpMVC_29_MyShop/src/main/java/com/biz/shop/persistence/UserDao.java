@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import com.biz.shop.domain.UserDetailsVO;
+import com.biz.shop.persistence.sql.UserSQL;
 
 public interface UserDao {
 
@@ -23,7 +24,8 @@ public interface UserDao {
 	@SelectProvider(type = UserSQL.class, method = "select_user_one")
 	public UserDetailsVO findByUserName(String username);
 	
-	// 동적 쿼리 문자열을 받아서 테이블을 생성하는 쿼리
-	@Select("${create_table_query}")
-	public void create_table(String create_table_query);
+//	// 동적 쿼리 문자열을 받아서 테이블을 생성하는 쿼리
+//	DDL_Dao interface로 통합
+//	@Select("${create_table_query}")
+//	public void create_table(String create_table_query);
 }

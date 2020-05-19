@@ -37,7 +37,7 @@ public class ServletConfig implements WebMvcConfigurer{
 	public MultipartResolver multiResolver() {
 		MultipartResolver mr = new CommonsMultipartResolver();
 		
-		((CommonsMultipartResolver) mr).setMaxUploadSize(1000 * 1000 * 2);
+		((CommonsMultipartResolver) mr).setMaxUploadSize(2_000_000); // 자바 1.8 이상에서 숫자가 큰경우 _바를 넣어 구분 가능.
 		((CommonsMultipartResolver) mr).setMaxUploadSizePerFile(1000 * 1000 * 20);
 		
 		return mr;
