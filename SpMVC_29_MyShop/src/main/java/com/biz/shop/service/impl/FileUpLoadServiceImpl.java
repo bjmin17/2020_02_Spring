@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.biz.shop.domain.ProFileVO;
 import com.biz.shop.persistence.DDL_Dao;
 import com.biz.shop.persistence.FileUpDao;
+import com.biz.shop.persistence.sql.CreateTableSQL;
 import com.biz.shop.service.FileUploadService;
 
 @Service
@@ -19,14 +20,7 @@ public class FileUpLoadServiceImpl implements FileUploadService {
 		this.fileUpDao = fileUpDao;
 		this.ddl_dao = ddl_dao;
 		
-		String create_fileup_table = 
-				"CREATE TABLE IF NOT EXISTS tbl_profile( "
-				+ " id BIGINT AUTO_INCREMENT PRIMARY KEY,  "
-				+ " file_p_code VARCHAR(6), "
-				+ " file_origin_name VARCHAR(255), "
-				+ " file_upload_name VARCHAR(255) )";
-		
-		ddl_dao.create_table(create_fileup_table);
+		ddl_dao.create_table(CreateTableSQL.create_fileup_table);
 						
 	}
 	

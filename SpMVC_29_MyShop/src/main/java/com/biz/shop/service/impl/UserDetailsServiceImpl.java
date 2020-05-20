@@ -16,6 +16,7 @@ import com.biz.shop.domain.UserDetailsVO;
 import com.biz.shop.persistence.AuthorityDao;
 import com.biz.shop.persistence.DDL_Dao;
 import com.biz.shop.persistence.UserDao;
+import com.biz.shop.persistence.sql.CreateTableSQL;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
@@ -29,27 +30,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		this.authDao = authDao;
 		this.ddl_dao = ddl_dao;
 		
-		String create_user_table = 
-				" CREATE TABLE IF NOT EXISTS tbl_users(" + 
-				"	id bigint PRIMARY KEY AUTO_INCREMENT," + 
-				"	user_name varchar(50) UNIQUE," + 
-				"    user_pass varchar(125)," + 
-				"    enabled boolean default true," +
-				"    email varchar(50)," + 
-				"    phone varchar(20)," + 
-				"    address varchar(125)" + 
-				" ) ";
-		
-		String create_auth_table =
-				" CREATE TABLE IF NOT EXISTS authorities(" + 
-				"	id bigint PRIMARY KEY AUTO_INCREMENT," + 
-				"    username varchar(50)," + 
-				"    authority varchar(50)" + 
-				" ) ";
+
 		// 테이블 생성 부분을 코딩하기 위한 방법
 		
-		ddl_dao.create_table(create_user_table);
-		ddl_dao.create_table(create_auth_table);
+		ddl_dao.create_table(CreateTableSQL.create_user_table);
+		ddl_dao.create_table(CreateTableSQL.create_auth_table);
 	}
 	
 	/*
