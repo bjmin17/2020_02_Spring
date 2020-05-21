@@ -32,7 +32,7 @@ $(function(){
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">메뉴1</a>
+        <a class="nav-link" href="#">SPRING SHOP</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">메뉴2</a>
