@@ -86,30 +86,6 @@ $(function(){
 		// $('form').submit()
 		
 	})
-	
-	$("#ajax_up").click(function(){
-		let formData = new FormData()
-		let file = $("#file")[0].files[0]
-		formData.append("file",file) // append를 이용해서 파일을 추가시켜주기
-		$.ajax({
-			url : "${rootPath}/file/upload",
-			method : "POST",
-			data : formData,
-			processData : false, // Ajax를 이용해서 file업로드를 할 때 중요한것
-			contentType : false, // Ajax를 이용해서 file업로드를 할 때 중요한것
-			// data로 전달해주면 문제는 csrf 토큰을 전달할 수가 없어서 403 오류가 발생한다.
-			beforeSend : function(ax) {
-				ax.setRequestHeader("${_csrf.headerName}","${_csrf.token}") // Ajax에서 token값 세팅하는 절차
-			},
-			success : function(result) {
-				alert(result)
-			},
-			error : function() {
-				alert("서버 통신 오류")
-			}
-
-		})
-	})
 })
 </script>
 </head>
@@ -133,8 +109,7 @@ $(function(){
 					<form:input path="p_oprice" class="form-control" placeholder="판매가격" />
 				</div>
 				<div class="form-group">
-					<input type="file" id="file" name="file">
-					<button type="button" id="ajax_up">ajax 파일업</button>
+					<input type="file" id="p_file" name="file">
 				</div>
 				<div class="button-group">
 					<button type="button" class="btn btn-primary save ">저장</button>

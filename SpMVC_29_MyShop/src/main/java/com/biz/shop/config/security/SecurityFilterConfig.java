@@ -1,5 +1,7 @@
 package com.biz.shop.config.security;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /*

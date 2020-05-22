@@ -27,14 +27,21 @@ public class ServletConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 		registry.addResourceHandler("/files/**").addResourceLocations("/files/");
 		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+		registry.addResourceHandler("/upload/**").addResourceLocations("files:c:///bizwork/upload/");
 		
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
+	
+	@Bean(name="filePath")
+	public String filePath() {
+		return "c:/bizwork/upload";
+	}
+	
 	/*
 	 * fileUpload를 하기 위한 설정
 	 */
-	@Bean
-	public MultipartResolver multiResolver() {
+	@Bean(name="multipartResolver")
+	public MultipartResolver multipartResolver() {
 		MultipartResolver mr = new CommonsMultipartResolver();
 		
 		((CommonsMultipartResolver) mr).setMaxUploadSize(2_000_000); // 자바 1.8 이상에서 숫자가 큰경우 _바를 넣어 구분 가능.

@@ -6,9 +6,14 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/include-head.jspf"%>
-<style>
-
-</style>
+<script>
+	$(function(){
+		$(".p_list").click(function(){
+			let id = $(this).data("pcode")
+			document.location.href="${rootPath}/product/detail/"+id
+		})
+	})
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/include-nav.jspf"%>
@@ -31,7 +36,7 @@
 			<c:otherwise>
 				<tbody>
 				<c:forEach items="${proList}" var="proVO">
-					<tr>
+					<tr class="p_list" data-pcode="${proVO.p_code}">
 						<td>${proVO.p_code}상품코드</td>
 						<td>${proVO.p_name}상품이름</td>
 						<td>${proVO.p_iprice}매입가격</td>
