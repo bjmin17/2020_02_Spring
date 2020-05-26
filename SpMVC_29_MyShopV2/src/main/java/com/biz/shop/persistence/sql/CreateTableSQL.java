@@ -29,6 +29,33 @@ public class CreateTableSQL {
 				+	"p_vat boolean default true, "
 				+	"p_file VARCHAR(255) )" ;
 
+	public static String drop_options_table
+	= " DROP TABLE IF EXISTS tbl_options ";
+	
+	public static String create_options_table 
+	= "CREATE TABLE IF NOT EXISTS tbl_options ( "
+			+ " o_seq bigint AUTO_INCREMENT PRIMARY KEY, "
+			+ " o_division VARCHAR(6) NOT NULL , " // 상품 테이블과 연동
+			+ " o_standard VARCHAR(6) NOT NULL , "
+			+ " o_name VARCHAR(20) NOT NULL ) ";
+	
+	public static String insert_options_item
+	= " INSERT INTO tbl_options( o_division, o_standard, o_name )"
+	+ " VALUES('SIZE','S','Small'), "
+	+ " ( 'SIZE', 'M', 'Middle' ), "
+	+ " ( 'SIZE', 'L', 'Large' ), "
+	+ " ( 'SIZE', 'XL', 'Extra Large' ), "
+	+ " ( 'SIZE', '2XL', '2Extra Large' ), "
+	+ " ( 'SIZE', '3XL', '3Extra Large' ), "
+	
+	+ " ( 'COLOR', 'WHITE', '흰색' ), "
+	+ " ( 'COLOR', 'BLACK', '검정' ), "
+	+ " ( 'COLOR', 'BLUE', '파랑' ), "
+	+ " ( 'COLOR', 'RED', '빨강' ), "
+	+ " ( 'COLOR', 'IVORY', '아이보리' ), "
+	+ " ( 'COLOR', 'GRAY', '회색' ) " ;
+	
+	
 	public static String create_pro_size_table 
 	= "CREATE TABLE IF NOT EXISTS tbl_pro_size( "
 			+ " s_seq bigint AUTO_INCREMENT PRIMARY KEY, "

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.biz.shop.domain.ProSizeVO;
 import com.biz.shop.domain.ProductVO;
+import com.biz.shop.service.ProOptionsService;
 import com.biz.shop.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductController {
 
 	private final ProductService proService;
+	private final ProOptionsService proOPTService;
 	
 	/*
 	 * spring form tag를 사용한 jsp와 연동하는 경우
@@ -83,7 +86,41 @@ public class ProductController {
 		productVO = proService.findByPCode(p_code);
 		
 		model.addAttribute("productVO",productVO);
+		
+		// option 정보 테이블에서 데이터 리스트 가져와서 사용하기
+		model.addAttribute("m_color_list",proOPTService.getColorList());
+		model.addAttribute("m_size_list",proOPTService.getSizeList());
+		
 		return "product/pro_detail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/insert_size",method=RequestMethod.POST)
+	public String insert_size(ProSizeVO proSizeVO) {
+		log.debug("SIZE:" + proSizeVO.getS_size());
+		log.debug("P_CODE:"+proSizeVO.getP_code());
+		
+		int ret = proOPTService.getProSize(proSizeVO);
+		if(ret > 0) {
+			return "EXISTS"; // 이미 등록된 사이즈 정보이므로 저장하지 않음
+		}
+		
+		proOPTService.insert_size(proSizeVO);
+		
+		//return proSizeVO;
+		return "OK";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/delete_size",method=RequestMethod.POST)
+	public String delete_size(ProSizeVO proSizeVO) {
+		int ret = proOPTService.delete_size(proSizeVO);
+		
+		if(ret > 0) {
+			return "DELETE";
+		}
+		
+		return "OK"; 
 	}
 	
 	public String update(long id) {
