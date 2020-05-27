@@ -34,4 +34,9 @@
 		<property name="password" value="${mysql.password}"/>
 	</bean>
 	
+	<!-- 이 2개는 트랜잭션 -->
+	<context:annotation-config/>
+	<tx:annotation-driven/>
+	
+	
 </beans>

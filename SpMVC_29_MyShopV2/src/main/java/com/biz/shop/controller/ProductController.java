@@ -96,7 +96,7 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value="/insert_size",method=RequestMethod.POST)
-	public String insert_size(ProSizeVO proSizeVO) {
+	public Object insert_size(ProSizeVO proSizeVO) {
 		log.debug("SIZE:" + proSizeVO.getS_size());
 		log.debug("P_CODE:"+proSizeVO.getP_code());
 		
@@ -105,10 +105,12 @@ public class ProductController {
 			return "EXISTS"; // 이미 등록된 사이즈 정보이므로 저장하지 않음
 		}
 		
+		log.debug("컨트롤러 s_Seq 값은 아마 없을거야 : "+ proSizeVO.toString());
 		proOPTService.insert_size(proSizeVO);
-		
+		// Dao의 Options 부분을 참조해서 사용
+		log.debug("컨트롤러 s_Seq 값 : "+ proSizeVO.toString());
 		//return proSizeVO;
-		return "OK";
+		return proSizeVO;
 	}
 	
 	@ResponseBody
