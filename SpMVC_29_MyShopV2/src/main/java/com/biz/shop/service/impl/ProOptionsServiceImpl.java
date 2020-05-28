@@ -55,20 +55,38 @@ public class ProOptionsServiceImpl implements ProOptionsService{
 		return proOPTDao.insert_size(proSizeVO);
 	}
 
-
-	@Override
-	public int insert_color(ProColorVO proColorVO) {
-		// TODO Auto-generated method stub
-		return proOPTDao.insert_color(proColorVO);
-	}
-
-
 	@Override
 	public int delete_size(ProSizeVO proSizeVO) {
 		// TODO Auto-generated method stub
 		return proOPTDao.delete_size(proSizeVO);
 	}
 
+	@Override
+	public Object insert_color(ProColorVO proColorVO) {
+		// TODO Auto-generated method stub
+		int ret = proOPTDao.getProColor(proColorVO);
+		// 이미 DB에 등록이 되어 있으면
+		
+		if(ret > 0) {
+			return "EXISTS";
+		}
+		proOPTDao.insert_color(proColorVO);
+		return proColorVO;
+	}
 
+
+	@Override
+	public List<ProColorVO> get_color_list_by_size(String s_seq) {
+		long longSeq = 0 ;
+		
+		try {
+			longSeq = Long.valueOf(s_seq);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+		List<ProColorVO> proColorList = proOPTDao.getColorListBySize(longSeq); 
+		return proColorList;
+	}
 
 }
